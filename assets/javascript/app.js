@@ -66,42 +66,53 @@ window.onload = function loaded(){
   		var authKey = "AIzaSyD3t9FZQ_rFOQdwV_b3PVvH6FEWSNJjRck";
   		var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + book + "+inauthor:" + "&key=" + authKey;
 
+      var movieQueryURL = "https://api.themoviedb.org/3/search/movie?api_key=1ebfe01505e78aebefb2f6d3e54a2dd0&query=" + book;
+
   	 $.ajax({
     url: queryURL,
     method: "GET"
   	}).then(function(googleBook) {
   		console.log(googleBook);
 
-  		var title = googleBook.items[0].volumeInfo.title;
+  		var title = googleBook.items[1].volumeInfo.title;
   		console.log("Title: " + title);
 
-  		var description = googleBook.items[0].volumeInfo.description;
+  		var description = googleBook.items[1].volumeInfo.description;
   		console.log("Description: " + description);
 
-  		var pages = googleBook.items[0].volumeInfo.pageCount;
+  		var pages = googleBook.items[1].volumeInfo.pageCount;
   		console.log("Pages: " + pages);
 
-  		var category = googleBook.items[0].volumeInfo.categories[0];
+  		var category = googleBook.items[1].volumeInfo.categories[0];
   		console.log("Category: " + category);
 
-  		var author = googleBook.items[0].volumeInfo.authors[0];
+  		var author = googleBook.items[1].volumeInfo.authors[0];
   		console.log("Author: " + author);
 
-  		var date = googleBook.items[0].volumeInfo.publishedDate;
+  		var date = googleBook.items[1].volumeInfo.publishedDate;
   		console.log("Publishing Date: " + date);
 
-  		var price = googleBook.items[0].saleInfo.listPrice.amount;
+  		var price = googleBook.items[1].saleInfo.listPrice.amount;
   		console.log("Price: " + price);
 
-  		var image = googleBook.items[0].volumeInfo.imageLinks.smallThumbnail;
+  		var image = googleBook.items[1].volumeInfo.imageLinks.smallThumbnail;
   		// console.log(category);
 
   		$("#topLeft").html("<img src='" + image +"'>");
 
 
-  	}); //end ajax then function
+  	}); //end ajax book function
 
-  }
+    $.ajax({
+    url: movieQueryURL,
+    method: "GET"
+    }).then(function(movieAPI) {
+      console.log("movie api works");
+      console.log(movieAPI);
+
+      }); //end ajax movie function
+
+  } //end run function
 
   		
   	
