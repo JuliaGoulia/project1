@@ -1,3 +1,22 @@
+		function yesFunction(){
+  			console.log("You would read this book");
+  			//add a yes to the firebase
+  			$("#topRight").empty();
+  			$("#topRight").html("Enjoy the book!");
+  		}
+  		function noFunction(){
+  			console.log("Hell No!");
+  			//add a no to the firebase
+  			$("#topRight").empty();
+  			$("#topRight").html("Maybe you would like the movie instead");
+  		}
+  		function maybeFunction(){
+  			console.log("You might read this book");
+  			//add a maybe to the firebase
+  			$("#topRight").empty();
+  			$("#topRight").html("Would you like to search for a different book?");
+  		}
+
 window.onload = function loaded(){
 
 	var config = {
@@ -53,6 +72,11 @@ window.onload = function loaded(){
   		$("#topLeft").html("<img src='" + image +"'>");
 
 
-  	});
+  	}); //end ajax then function
+
+
+
+  		
+  	
 
 } //end window.onload

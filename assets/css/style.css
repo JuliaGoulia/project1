@@ -5,6 +5,9 @@
 #topRight{
 	background-color: blue;
 	height: 50vh;
+	color: white;
+	text-shadow: 2px 2px red;
+	font-size: 25px;
 }
 /*#bottomLeft{
 	background-color: black;
@@ -13,4 +16,12 @@
 #row2{
 	background-color: pink;
 	height: 50vh;
+}
+#radioPoll{
+	color: white;
+	text-shadow: 2px 2px black;
+}
+
+input[type="radio"]{
+  margin: 0 10px 0 30px;
 }

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- LINK TO FIREBASE GOES HERE -->
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
 
   </head>
 
@@ -23,7 +23,13 @@
         <div id="row1">
             <div class="col-lg-6" id="topLeft">
             </div>
-            <div class="col-lg-6" id="topRight">
+            <div class="col-lg-6" id="topRight"> Would you read this book?
+              <form id="radioPoll">
+                <input type="radio" name="poll" value="yes" class="yes" onclick="yesFunction()"> Yes
+                <input type="radio" name="poll" value="no" class="no" onclick="noFunction()"> No
+                <input type="radio" name="poll" value="maybe" class="maybe" onclick="maybeFunction()"> Maybe
+              </form>
+       
             </div>
         </div>
 
