@@ -1,8 +1,12 @@
+	
+	  
+  		var book;
+
 		function yesFunction(){
-  			console.log("You would read this book");
+  			console.log("You would read " + book + "?");
   			//add a yes to the firebase
   			$("#topRight").empty();
-  			$("#topRight").html("Enjoy the book!");
+  			$("#topRight").html("Enjoy reading " + book + "!");
   		}
   		function noFunction(){
   			console.log("Hell No!");
@@ -19,6 +23,8 @@
 
 window.onload = function loaded(){
 
+	
+
 	var config = {
     apiKey: "AIzaSyA6K1EB3z6KS0KuIUaJ_na2IOthkFfq6yw",
     authDomain: "juliagoolia-764e1.firebaseapp.com",
@@ -33,11 +39,32 @@ window.onload = function loaded(){
   	//create variable dataRef to refer to database
   	var dataRef = firebase.database();
 
-  	var authKey = "AIzaSyD3t9FZQ_rFOQdwV_b3PVvH6FEWSNJjRck";
-  	var book = "Atlas Shrugged";
+  	
+
+  	
+
+  		$('#search').click(function () {
+  			
+			book = $("#bookSearch").val();
+			console.log("Book title: " + book);
+			run(book);
+			$("#topRight").append(topRight);
+
+			}); // end click function
+
+  			
+
+
   	var author;
 
-  	var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + book + "+inauthor:" + "&key=" + authKey;
+  	
+
+
+  	function run(){
+  		console.log("run worked");
+
+  		var authKey = "AIzaSyD3t9FZQ_rFOQdwV_b3PVvH6FEWSNJjRck";
+  		var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + book + "+inauthor:" + "&key=" + authKey;
 
   	 $.ajax({
     url: queryURL,
@@ -74,7 +101,7 @@ window.onload = function loaded(){
 
   	}); //end ajax then function
 
-
+  }
 
   		
   	
