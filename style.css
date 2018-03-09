@@ -10,10 +10,10 @@
 	margin-top: 30px;
 }
 
-img{
+.bookImage{
 	height: 180px;
 	width: 130px;
-	margin: 15px;
+	/*margin: 15px;*/
 }
 
 #bookTitle{
@@ -23,9 +23,102 @@ img{
 
 #movieTitle{
 	font-size: 30px;
+	text-align: center;
 }
 
 #iframe{
 	margin-top: 30px;
 	text-align: center;
+}
+
+#shakes{
+	height: 5vw;
+	width: 5vw;
+	/*margin: 0px;*/
+}
+
+nav{
+	background-color: lightgray;
+
+	overflow: hidden;
+	height: 6vw !important;
+}
+
+#searchBox{
+	border: solid 1px lightgray !important;
+	padding: 10px !important;
+	margin-top: 3vw !important;
+}
+
+#search{
+	margin-top: 10px !important;
+}
+
+label{
+	margin-top: 5px !important;
+}
+
+.card{
+	float: left;
+	/*border: solid 1px lightgray !important;*/
+	/*margin: 10px;*/
+	height: 16vw;
+	/*margin: 2px;*/
+}
+
+#bookPoster{
+	margin-top: 4vw;
+}
+
+#myImg{
+	float: left;
+	height: 16vw;
+	width: 12vw;
+}
+
+#bookInfo{
+	/*float: left;*/
+}
+
+#myTitle{
+	font-size: 30px;
+	text-align: center;
+}
+
+#myBook{
+	margin-top: 2vw !important;
+	/*text-align: center;*/
+}
+
+#myMovie{
+	margin-top: 2vw !important;
+	/*text-align: center;*/
+}
+
+#myPoster{
+	margin-top: 2vw !important;
+	/*text-align: center;*/
+}
+
+#moviePoster{
+	margin-top: 2vw !important;
+	/*text-align: center;*/
+}
+
+#movieInfo{
+	margin-top: 30px;
+	/*text-align: center;*/
+}
+
+#movieButton{
+	margin: 10px !important;
+	background-color: lightblue !important;
+	padding-right: 20px !important;
+	padding-left: 20px !important;
+}
+
+#trailer{
+	font-size: 25px;
+	text-align: center;
+	margin-top: 5vw;
 }

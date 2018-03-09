@@ -5,6 +5,9 @@ $(document).ready(function() {
 	$("#gotMovie").hide();
 	$("#book").hide();
 	$("#yourBook").hide();
+  $("#myBook").hide();
+  $("#movieButton").hide();
+  $("#myMovie").hide();
 
 	var yotubeURL = '';
 
@@ -51,15 +54,29 @@ $(document).ready(function() {
 
   					var image = googleBook.items[i].volumeInfo.imageLinks.thumbnail;
 
-  					// console.log("image " + image);
+            var title = googleBook.items[i].volumeInfo.title;
+            var titleText = title;
 
-  					$("#bookPoster").append("<img id = 0 src='" + image +"'>");
+            var card = $("<div class='card' style='width: 18rem'>");
+
+            card.append($("<img id='0' class='card-img-top bookImage' src='" + image + "'>"));
+
+            var cardBody = $("<div class='card-body'>");
+
+            var cardText = $("<p class='card-text'>");
+
+            cardText.append(titleText);
+
+            cardBody.append(cardText);
+
+            console.log(titleText);
+
+            card.append(cardBody);
+
+  					$("#bookPoster").append(card);
 
   					$("#0" ).attr('id', i);
 
-  					// $("#" + i).attr('id', i);
-
-  					// console.log($("#1").attr('id'));
   				}
  				
 
@@ -85,15 +102,18 @@ $(document).ready(function() {
   					$("#bookPoster").empty();
   					$("#bookTitle").hide();
 
-  					$("#bookInfo").empty();
+  					// $("#bookInfo").empty();
   					$("#iframe").empty();
-					$("#gotMovie").hide(); 
+					  $("#gotMovie").hide(); 
 
-					$("#bookPoster").append("<img id=0 src='" + myImg +"'>");
-					// $("#bookPoster").append(id);
+            $("#book").hide();
+            $("#myBook").show();
 
+					  $("#myPoster").append("<img id=myImg src='" + myImg +"'>");
+					  // $("#bookPoster").append(id);
+ 
   					var title = googleBook.items[id].volumeInfo.title;
-  					var titleText = "TITLE: " + title;
+  					var titleText = title;
 
   					var description = googleBook.items[id].volumeInfo.description;
   					var descriptionText = "DESCRIPTION: " + description;
@@ -110,10 +130,20 @@ $(document).ready(function() {
   					var date = googleBook.items[id].volumeInfo.publishedDate;
   					var publishText = "PUBLISHING DATE: " + date;
 
-  					$("#bookInfo").append(titleText + '<br>', descriptionText + '<br>', pagesText + '<br>', categoryText + '<br>',
-  										authorText + '<br>', publishText + '<br>');
+  					// $("#bookInfo").append(titleText + '<br>', descriptionText + '<br>', pagesText + '<br>', categoryText + '<br>',
+  					// 					authorText + '<br>', publishText + '<br>');
+            $("#bookInfo").show();
 
+            $("#myTitle").append(titleText);
+            $("#author").append(authorText);
+            $("#description").append(descriptionText);
+            $("#category").append(categoryText);
+            $("#publish").append(publishText);
+            $("#pages").append(pagesText);
+
+            // $("#bookInfo").append($("#title"));
   					tmbdSearch(title);
+            
 
   				});
    				
@@ -122,6 +152,59 @@ $(document).ready(function() {
   		});
 
   	}
+
+    function imbdSearch(title){
+
+      var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
+
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+        // $("#movie-view").text(JSON.stringify(response));
+        console.log('imbdSearch');
+        console.log(response);
+
+        var release = response.Released;
+        var releaseText = "RELEASE: " + release;
+
+        var title = response.Title;
+        var titleText = title;
+
+        var description = response.Plot;
+        var descriptionText = "DESCRIPTION: " + description;
+
+        var director = response.Director;
+        var directorText = "DIRECTOR: " + director;
+
+        var rating = response.Rated;
+        var ratingText = "RATING: " + rating;
+
+        var runtime = response.Runtime;
+        var runtimeText = "RUNTIME: " + runtime;
+
+        var actors = response.Actors;
+        var actorsText = "ACTORS: " + actors;
+
+        var awards = response.Awards;
+        var awardsText = "AWARDS: " + awards;
+
+        var image = response.Poster;
+
+        $("#moviePoster").append("<img id=myImg src='" + image +"'>");
+
+        $("#movieTitle").append(titleText);
+        $("#director").append(directorText);
+        $("#release").append(releaseText);
+        $("#runtime").append(runtimeText);
+        $("#rating").append(ratingText);
+        $("#actors").append(actorsText);
+        $("#awards").append(awardsText);
+        $("#descriptionMovie").append(descriptionText);
+
+      });
+      
+    }
 
   	function tmbdSearch(title){
 
@@ -141,9 +224,19 @@ $(document).ready(function() {
 
    				console.log(key);
 
+          var movieButton = $("<button class='btn btn-default' id='movieButton'>");
+          movieButton.append('We found a movie!');
+          // $("#movieButton").show();
+          $("#myPoster").append(movieButton);
+
+          $("#iframe").hide();
+
+          imbdSearch(title);
    				findTrailer(key);
+
    			}else{
    				// sorry we couldnt find a movie
+          $("#myPoster").append('Sorry we couldnt find a movie.')
    			}
    			
 		});
@@ -181,7 +274,15 @@ $(document).ready(function() {
 				var link = response.items[0].player.embedHtml;
 
 				link = link.replace(/\/\//g, "https://");
+
 				$("#iframe").append(link);
+
+        $(document).on('click', '#movieButton', function() {
+          // body...
+          $("#myBook").hide();
+          $("#myMovie").show();
+          $("#iframe").show();
+        })
 
 			});
 
