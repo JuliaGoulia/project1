@@ -1,0 +1,31 @@
+#book{
+	margin-top: 30px;
+}
+
+#gotMovie{
+	margin-top: 30px;
+}
+
+#bookInfo{
+	margin-top: 30px;
+}
+
+img{
+	height: 180px;
+	width: 130px;
+	margin: 15px;
+}
+
+#bookTitle{
+	font-size: 30px;
+
+}
+
+#movieTitle{
+	font-size: 30px;
+}
+
+#iframe{
+	margin-top: 30px;
+	text-align: center;
+}
