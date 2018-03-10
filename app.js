@@ -1,3 +1,23 @@
+
+
+function yesFunction(){
+    
+    $("#radioPoll").html("Thanks!");
+
+  }
+
+  function noFunction(){
+    
+    $("#radioPoll").html("Thanks!");
+
+  }
+
+  function maybeFunction(){
+    
+    $("#radioPoll").html("Thanks!");
+     
+  }
+
 $(document).ready(function() {
 
 
@@ -8,6 +28,61 @@ $(document).ready(function() {
   $("#myBook").hide();
   $("#movieButton").hide();
   $("#myMovie").hide();
+  $("#poll").hide();
+
+  var config = {
+    apiKey: "AIzaSyA6K1EB3z6KS0KuIUaJ_na2IOthkFfq6yw",
+    authDomain: "juliagoolia-764e1.firebaseapp.com",
+    databaseURL: "https://juliagoolia-764e1.firebaseio.com",
+    projectId: "juliagoolia-764e1",
+    storageBucket: "juliagoolia-764e1.appspot.com",
+    messagingSenderId: "45376190688"
+  }; //end config
+
+  firebase.initializeApp(config);
+
+  // create variable dataRef to refer to database
+  var dataRef = firebase.database();
+
+  var countRef  = dataRef.ref().child('Count');
+
+  var count = 0;
+
+  countRef.set({
+    count: count
+  })
+
+  var memes = ["./assets/images/baby.jpg", "./assets/images/charlotte.jpg", "./assets/images/shakespeare1.jpg", 
+              "./assets/images/mockingbird.jpg", "./assets/images/mobydick.jpg", "./assets/images/sideways.jpg", 
+              "./assets/images/snowwhite.jpg", "./assets/images/twain.jpg", "./assets/images/bookclub.jpg", 
+              "./assets/images/cat.jpg", "./assets/images/lisa.jpg", 
+              "./assets/images/man.jpg", "./assets/images/red.jpg"];
+  var count = 0;
+
+  nextImage();
+
+  function displayImage(){
+    $("#img-holder").html("<img src=" + memes[count] + " width='200px' height='200px'>");
+
+    //insert a random generator for count
+    count = Math.floor(Math.random() * memes.length);
+    console.log(memes[count]);
+    //count++;
+    // nextImage();
+  }
+
+  function nextImage() {
+ 
+       
+    console.log(count);
+
+    setInterval(displayImage, 6000);
+
+    if (count >= memes.length) {
+      count = 0;
+           
+    }
+  }
 
 	var yotubeURL = '';
 
@@ -87,7 +162,9 @@ $(document).ready(function() {
   				$("img").on('click', function(event){
   					event.preventDefault();
 
-  					
+            count++;
+
+            $("#poll").show();  					
 
   					console.log($("img").attr('id'));
 
@@ -96,8 +173,6 @@ $(document).ready(function() {
   					var myImg = googleBook.items[id].volumeInfo.imageLinks.thumbnail;
 
   					console.log(myImg);
-
-  					// $("#bookPoster").append("<img id=0 src='" + myImg +"'>");
 
   					$("#bookPoster").empty();
   					$("#bookTitle").hide();
@@ -110,7 +185,6 @@ $(document).ready(function() {
             $("#myBook").show();
 
 					  $("#myPoster").append("<img id=myImg src='" + myImg +"'>");
-					  // $("#bookPoster").append(id);
  
   					var title = googleBook.items[id].volumeInfo.title;
   					var titleText = title;
@@ -130,8 +204,6 @@ $(document).ready(function() {
   					var date = googleBook.items[id].volumeInfo.publishedDate;
   					var publishText = "PUBLISHING DATE: " + date;
 
-  					// $("#bookInfo").append(titleText + '<br>', descriptionText + '<br>', pagesText + '<br>', categoryText + '<br>',
-  					// 					authorText + '<br>', publishText + '<br>');
             $("#bookInfo").show();
 
             $("#myTitle").append(titleText);
@@ -142,11 +214,49 @@ $(document).ready(function() {
             $("#pages").append(pagesText);
 
             // $("#bookInfo").append($("#title"));
+
   					tmbdSearch(title);
+
+            countRef.update({
+              count: count
+            })
+
+            var titleCount = 0;
+            var title_ref;
+
+            dataRef.ref().on("value", function(snapshot) {
+
+              if(snapshot.child(title).exists()){
+                
+                console.log(titleCount);
+                title_ref = dataRef.ref(title);
+                console.log(title_ref);
+                titleCount = snapshot.child(title).val().yes;
+                console.log('titleCount', titleCount);
+
+              }else{
+
+                title_ref = title;
+                title_ref = dataRef.ref().child(title);
+
+                title_ref.set({
+                  yes: 0,
+                  no: 0
+                })
+
+              }
             
 
-  				});
-   				
+  				  });
+
+            $(document).on('click', '.yes', function(){
+              titleCount++;
+              title_ref.update({
+                yes: titleCount
+              })
+            })
+
+   				});
    			
   			
   		});
@@ -228,7 +338,6 @@ $(document).ready(function() {
           movieButton.append('We found a movie!');
           // $("#movieButton").show();
           $("#myPoster").append(movieButton);
-
           $("#iframe").hide();
 
           imbdSearch(title);

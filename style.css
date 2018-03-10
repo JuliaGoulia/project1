@@ -50,14 +50,22 @@ nav{
 	margin-top: 3vw !important;
 }
 
+#poll{
+	/*border: solid 1px lightgray !important;*/
+	padding: 10px !important;
+	margin-top: 3vw !important;
+	width: 100% !important;
+	text-align: center;
+}
+
 #search{
 	margin-top: 10px !important;
 }
 
 label{
 	margin-top: 5px !important;
-}
 
+}
 .card{
 	float: left;
 	/*border: solid 1px lightgray !important;*/
@@ -112,7 +120,7 @@ label{
 
 #movieButton{
 	margin: 10px !important;
-	background-color: lightblue !important;
+	/*background-color: lightblue !important;*/
 	padding-right: 20px !important;
 	padding-left: 20px !important;
 }

@@ -11,6 +11,8 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
 
+	<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
@@ -18,13 +20,12 @@
 		
 		<nav class="navbar">
   			<a class="navbar-brand" href="#">
-    			<!-- <img id="shakes" src="assets/images/shakes.jpg" width="30" height="30" alt=""> -->
   			</a>
 		</nav>
 
 		<div id="row">
-        	<div class="col-md-4" id="searchBox">
-            	<div class="form-group">
+        	<div class="col-md-4">
+            	<div class="form-group" id="searchBox">
                 	<label for="search">Search for a book</label>
                 	<input type="text" class="form-control" id="bookSearch">
 
@@ -34,9 +35,13 @@
                 	<button type="button" class="btn btn-default" id="search">Search</button>
             	</div>
 
+            	<div class="col-md-4">
+            		<div id="img-holder">
+            			<img src="assets/images/bookclub.jpg"">
+            		</div>
+        		</div>
+
         	</div>
-           
-    	
 
 			<div id="book" class="col-md-8" align="center">
 				<div id="bookTitle">We Found Some Books! Click On The One Your Looking For</div>
@@ -45,7 +50,10 @@
 
 			<div id="myBook" class="col-md-8">
 				<div id="myTitle"></div>
-				<div id="myPoster" class="col-md-4"></div>
+				<div class="col-md-4">
+					<div id="myPoster"></div>
+
+				</div>
 
 				<div id="bookInfo" class="col-md-8">
 						
@@ -54,13 +62,23 @@
 					<div id="publish"></div>
 					<div id="pages"></div>
 					<div id="description"></div>
+
+					<div id="poll">
+            			<form id="radioPoll">
+            				<label>Would you read this book?</label><br>
+               					<input type="radio" name="poll" value="yes" class="yes" > Yes
+               					<input type="radio" name="poll" value="no" class="no"> No
+               					<input type="radio" name="poll" value="maybe" class="maybe"> Maybe
+             			</form>
+            		
+            		</div>
 				</div>
 			</div>
 
 			<div id="myMovie" class="col-md-8">
 				<div id="movieTitle"></div>
 				<div id="moviePoster" class="col-md-4"></div>
-
+				
 				<div id="movieInfo" class="col-md-8">
 						
 					<div id="director"></div>
