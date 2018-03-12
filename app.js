@@ -1,23 +1,4 @@
 
-
-function yesFunction(){
-    
-    $("#radioPoll").html("Thanks!");
-
-  }
-
-  function noFunction(){
-    
-    $("#radioPoll").html("Thanks!");
-
-  }
-
-  function maybeFunction(){
-    
-    $("#radioPoll").html("Thanks!");
-     
-  }
-
 $(document).ready(function() {
 
 
@@ -44,38 +25,40 @@ $(document).ready(function() {
   // create variable dataRef to refer to database
   var dataRef = firebase.database();
 
+  // create refrence to count child
   var countRef  = dataRef.ref().child('Count');
 
+  // set count to 0 on page load
   var count = 0;
 
+  // set child count to 0 in firebase
   countRef.set({
     count: count
   })
 
+  // array of memes
   var memes = ["./assets/images/baby.jpg", "./assets/images/charlotte.jpg", "./assets/images/shakespeare1.jpg", 
               "./assets/images/mockingbird.jpg", "./assets/images/mobydick.jpg", "./assets/images/sideways.jpg", 
               "./assets/images/snowwhite.jpg", "./assets/images/twain.jpg", "./assets/images/bookclub.jpg", 
               "./assets/images/cat.jpg", "./assets/images/lisa.jpg", 
               "./assets/images/man.jpg", "./assets/images/red.jpg"];
-  var count = 0;
+
+  // var count = 0;
 
   nextImage();
 
+  // function to dispaly images
   function displayImage(){
     $("#memes").attr('src', memes[count]);
 
     //insert a random generator for count
     count = Math.floor(Math.random() * memes.length);
-    // console.log(memes[count]);
-    //count++;
-    // nextImage();
   }
 
+  // function to update image every 6 seconds 
   function nextImage() {
- 
-       
-    // console.log(count);
 
+    // call displayImage every 6 seconds
     setInterval(displayImage, 6000);
 
     if (count >= memes.length) {
@@ -84,29 +67,34 @@ $(document).ready(function() {
     }
   }
 
+  // set url to empty string
 	var yotubeURL = '';
 
+  // when user clicks search for book
 	$(document).on('click','#search', function(event){
 
 		event.preventDefault();
 
+    // grab book value
 		var book = $("#bookSearch").val().trim();
 
+    // grab autor vlaue
 		var author = $("#authorSearch").val().trim();
 
+    // replaces first letter of each word in book to uppercase
 		book = book.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 
-		// console.log(book);
-
+    //  empty out search values
 		$("#bookSearch").val('');
 		$("#authorSearch").val('');
 
+    // hide show for each new search
     $("#myBook").hide();
     $("#myMovie").hide();
     $("#bookTitle").show();
 
+    // empty out all divs individually for next search
     $("#bookPoster").empty();
-
     $("#myTitle").empty();
     $("#myPoster").empty();
 
@@ -130,377 +118,464 @@ $(document).ready(function() {
 
 		// console.log(book);
 
+    // call bookSearch with book and author
 		bookSearch(book, author);
 		
 	})
 	
+  // function to search for book by title and author
 	function bookSearch(book, author){
 
 		var authKey = "AIzaSyD3t9FZQ_rFOQdwV_b3PVvH6FEWSNJjRck";
 
-  		var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + book + "+inauthor:" + author + "&key=" + authKey;
+  	var queryURL = "https://www.googleapis.com/books/v1/volumes?q=" + book + "+inauthor:" + author + "&key=" + authKey;
 
-  	 	$.ajax({
-    		url: queryURL,
-    		method: "GET"
-  		}).then(function(googleBook) {
-  			console.log(googleBook);
+    // query google books
+  	$.ajax({
 
-  			// book = tost
-        if(googleBook.totalItems == 0){
-          $("#bookTitle").text("Your search didn't return any results. Check your spelling and try again.")
-          $("#book").show();
+    	url: queryURL,
+    	method: "GET"
+
+  	}).then(function(googleBook) {
+  		console.log(googleBook);
+
+  		// spell check
+      if(googleBook.totalItems == 0){
+
+        // create text and show results
+        $("#bookTitle").text("Your search didn't return any results. Check your spelling and try again.")
+        $("#book").show();
+
+      }else{
+
+        // for each book in return array
+  		  for(var i = 0; i < googleBook.items.length; i++){
+
+          // if result has no image
+  				if(googleBook.items[i].volumeInfo.imageLinks == null){
+
+            // get title
+            var title = googleBook.items[i].volumeInfo.title;
+            var titleText = title;
+
+            // create card
+            var card = $("<div class='card' style='width: 18rem'>");
+
+            // append no image to card
+            card.append($("<img id='0' class='card-img-top bookImage' src='assets/images/noImage.jpg'>"));
+
+            var cardBody = $("<div class='card-body'>");
+
+            var cardText = $("<p class='card-text'>");
+
+            // append title text to body
+            cardText.append(titleText);
+            cardBody.append(cardText);
+            card.append(cardBody);
+
+            // append card to screen
+            $("#bookPoster").append(card);
+
+            // unpdate each card with seperate id
+            $("#0" ).attr('id', i);
+
+            console.log($("#" + i).attr('id'));
+          }else{
+
+            // grab image
+            var image = googleBook.items[i].volumeInfo.imageLinks.thumbnail;
+
+            // grab title
+            var title = googleBook.items[i].volumeInfo.title;
+            var titleText = title;
+
+            // create card
+            var card = $("<div class='card' style='width: 18rem'>");
+
+            // append new image
+            card.append($("<img id='0' class='card-img-top bookImage' src='" + image + "'>"));
+
+            var cardBody = $("<div class='card-body'>");
+
+            var cardText = $("<p class='card-text'>");
+
+            // append title text to body
+            cardText.append(titleText);
+            cardBody.append(cardText);
+            card.append(cardBody);
+
+            // append card to screen
+            $("#bookPoster").append(card);
+
+            // update each card with seperate id
+            $("#0" ).attr('id', i);
+
+            console.log($("#" + i).attr('id'));
+
+          }
+
+          // create text and show results
+          $("#bookTitle").text('We Found Some Books! Click On The One Your Looking For');
+  				$("#book").show();
+
+  			}
+
+      }
+
+      // when user clicks result image
+  		$("img").on('click', function(event){
+  			event.preventDefault();
+
+        // $("#radioPoll")[0].reset();
+
+        // update count
+        count++;
+
+        // show poll
+        $("#poll").show();  					
+
+  			console.log($(this).attr('id'));
+
+        // find id
+  			var id = $(this).attr('id');
+
+        // catch last array element id
+        if(id == 0){
+          id = 9;
         }else{
-
-  			  for(var i = 0; i < googleBook.items.length; i++){
-
-
-  				  if(googleBook.items[i].volumeInfo.imageLinks == null){
-
-              var title = googleBook.items[i].volumeInfo.title;
-              var titleText = title;
-
-              var card = $("<div class='card' style='width: 18rem'>");
-
-              card.append($("<img id='0' class='card-img-top bookImage' src='assets/images/noImage.jpg'>"));
-
-              var cardBody = $("<div class='card-body'>");
-
-              var cardText = $("<p class='card-text'>");
-
-              cardText.append(titleText);
-
-              cardBody.append(cardText);
-
-              // console.log(titleText);
-
-              card.append(cardBody);
-
-              $("#bookPoster").append(card);
-
-              $("#0" ).attr('id', i);
-
-              console.log($("#" + i).attr('id'));
-            }else{
-
-              var image = googleBook.items[i].volumeInfo.imageLinks.thumbnail;
-
-              var title = googleBook.items[i].volumeInfo.title;
-              var titleText = title;
-
-              var card = $("<div class='card' style='width: 18rem'>");
-
-              card.append($("<img id='0' class='card-img-top bookImage' src='" + image + "'>"));
-
-              var cardBody = $("<div class='card-body'>");
-
-              var cardText = $("<p class='card-text'>");
-
-              cardText.append(titleText);
-
-              cardBody.append(cardText);
-
-              // console.log(titleText);
-
-              card.append(cardBody);
-
-              $("#bookPoster").append(card);
-
-              $("#0" ).attr('id', i);
-
-              console.log($("#" + i).attr('id'));
-
-            }
-
-            $("#bookTitle").text('We Found Some Books! Click On The One Your Looking For');
-  				  $("#book").show();
-
-  			  }
-
+          id = id -1;
         }
 
-  			$("img").on('click', function(event){
-  				event.preventDefault();
+        console.log(id);
 
-          $("#radioPoll")[0].reset();
+        // select image
+        var myImg = googleBook.items[id].volumeInfo.imageLinks.thumbnail;
 
-          count++;
+  			console.log(myImg);
 
-          $("#poll").show();  					
+        // show selected image and search info
+  			$("#bookPoster").empty();
+  			$("#bookTitle").hide();
 
-  				console.log($(this).attr('id'));
+				// $("#bookInfo").empty();
+  			$("#iframe").empty();
+				$("#gotMovie").hide(); 
 
-  				var id = $(this).attr('id');
+        $("#book").hide();
+        $("#myBook").show();
 
-          if(id == 0){
-            id = 9;
-          }else{
-            id = id -1;
-          }
+        // append clicked image
+				$("#myPoster").append("<img id=myImg src='" + myImg +"'>");
 
-          console.log(id);
-  				var myImg = googleBook.items[id].volumeInfo.imageLinks.thumbnail;
+        // for each search I added an if statement to catch a no return
+        if(googleBook.items[id].volumeInfo.title == null){
+          var titleText = "TITLE: Unavailable";
+        }else{
+          var title = googleBook.items[id].volumeInfo.title;
+          var titleText = title;
+        }
 
-  				console.log(myImg);
+        if(googleBook.items[id].volumeInfo.description == null){
+          var descriptionText = "DESCRIPTION: Unavailable";
+        }else{
+          var description = googleBook.items[id].volumeInfo.description;
+          var descriptionText = "DESCRIPTION: " + description;
+        }
 
-  				$("#bookPoster").empty();
-  				$("#bookTitle").hide();
+        if(googleBook.items[id].volumeInfo.pageCount == null){
+          var pagesText = "PAGES: Unavailable";
+        }else{
+          var pages = googleBook.items[id].volumeInfo.pageCount;
+          var pagesText = "PAGES: " + pages;
+        }
 
-  				// $("#bookInfo").empty();
-  				$("#iframe").empty();
-					$("#gotMovie").hide(); 
-
-          $("#book").hide();
-          $("#myBook").show();
-
-					$("#myPoster").append("<img id=myImg src='" + myImg +"'>");
-
-          if(googleBook.items[id].volumeInfo.title == null){
-            var titleText = "TITLE: Unavailable";
-          }else{
-            var title = googleBook.items[id].volumeInfo.title;
-            var titleText = title;
-          }
-
-          if(googleBook.items[id].volumeInfo.description == null){
-            var descriptionText = "DESCRIPTION: Unavailable";
-          }else{
-            var description = googleBook.items[id].volumeInfo.description;
-            var descriptionText = "DESCRIPTION: " + description;
-          }
-
-          if(googleBook.items[id].volumeInfo.pageCount == null){
-            var pagesText = "PAGES: Unavailable";
-          }else{
-            var pages = googleBook.items[id].volumeInfo.pageCount;
-            var pagesText = "PAGES: " + pages;
-          }
-
-          if(googleBook.items[id].volumeInfo.categories == null){
-            var categoryText = "CATEGORY: Unavailable";
-          }else{
-            var category = googleBook.items[id].volumeInfo.categories[0];
-            var categoryText = "CATEGORY: " + category;
-          }
+        if(googleBook.items[id].volumeInfo.categories == null){
+          var categoryText = "CATEGORY: Unavailable";
+        }else{
+          var category = googleBook.items[id].volumeInfo.categories[0];
+          var categoryText = "CATEGORY: " + category;
+        }
   				
-          if(googleBook.items[id].volumeInfo.authors == null){
-            var authorText = "AUTHOR: Unavailable";
-          }else{
-            var author = googleBook.items[id].volumeInfo.authors[0];
-            var authorText = "AUTHOR: " + author;
-          }
+        if(googleBook.items[id].volumeInfo.authors == null){
+          var authorText = "AUTHOR: Unavailable";
+        }else{
+          var author = googleBook.items[id].volumeInfo.authors[0];
+          var authorText = "AUTHOR: " + author;
+        }
 
-  				if(googleBook.items[id].volumeInfo.publishedDate == null){
-            var publishText = "PUBLISHING DATE: Unavailable";
-          }else{
-            var date = googleBook.items[id].volumeInfo.publishedDate;
-            var publishText = "PUBLISHING DATE: " + date;
-          }
+  			if(googleBook.items[id].volumeInfo.publishedDate == null){
+          var publishText = "PUBLISHING DATE: Unavailable";
+        }else{
+          var date = googleBook.items[id].volumeInfo.publishedDate;
+          var publishText = "PUBLISHING DATE: " + date;
+        }
 
   				
+        // show info
+        $("#bookInfo").show();
 
-          $("#bookInfo").show();
+        // append all info
+        $("#myTitle").append(titleText);
+        $("#author").append(authorText);
+        $("#description").append(descriptionText);
+        $("#category").append(categoryText);
+        $("#publish").append(publishText);
+        $("#pages").append(pagesText);
 
-          $("#myTitle").append(titleText);
-          $("#author").append(authorText);
-          $("#description").append(descriptionText);
-          $("#category").append(categoryText);
-          $("#publish").append(publishText);
-          $("#pages").append(pagesText);
+        // $("#bookInfo").append($("#title"));
+        // call movie search
+  			tmbdSearch(title);
 
-          // $("#bookInfo").append($("#title"));
+        // update count variable
+        countRef.update({
+          count: count
+        })
 
-  				tmbdSearch(title);
+        // create variable for poll
+        var titleCount = 0;
 
-          countRef.update({
-            count: count
-          })
+        // create a refrence for title
+        var title_ref;
 
-          var titleCount = 0;
-          var title_ref;
+        dataRef.ref().on("value", function(snapshot) {
 
-          dataRef.ref().on("value", function(snapshot) {
-
-            if(snapshot.child(title).exists()){
+          // if book already in database
+          if(snapshot.child(title).exists()){
                 
-              // console.log(titleCount);
-              title_ref = dataRef.ref(title);
-              // console.log(title_ref);
-              titleCount = snapshot.child(title).val().yes;
-              // console.log('titleCount', titleCount);
+            // console.log(titleCount);
 
-            }else{
+            // store child name
+            title_ref = dataRef.ref(title);
 
-              title_ref = title;
-              title_ref = dataRef.ref().child(title);
+            // console.log(title_ref);
 
-              title_ref.set({
-                yes: 0,
-                no: 0
-              })
+            // update poll value
+            titleCount = snapshot.child(title).val().yes;
 
-            }
+            // console.log('titleCount', titleCount);
+
+          // else book not in database
+          }else{
+
+            // create new refrence
+            title_ref = title;
+
+            // create new child
+            title_ref = dataRef.ref().child(title);
+
+            // set child 
+            title_ref.set({
+              yes: 0,
+              no: 0
+            })
+          }
             
 
-  				});
+  			});
 
-          $(document).on('click', '.yes', function(){
-            titleCount++;
-            // $("#radioPoll").text("Thanks!");
-            title_ref.update({
-              yes: titleCount
-            })
+        // when user clicks yes to poll
+        $(document).on('click', '.yes', function(){
+
+          // increment titleCount
+          titleCount++;
+          // $("#radioPoll").text("Thanks!");
+
+          // update child yes value
+          title_ref.update({
+            yes: titleCount
           })
+        })
 
-   			});
+   		});
    			
   			
-  		});
+  	});
 
-  	}
+  }
 
-    function imbdSearch(title){
+  // function for movie info search
+  function imbdSearch(title){
 
-      var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
+    var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
 
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).then(function(response) {
-        // $("#movie-view").text(JSON.stringify(response));
-        // console.log('imbdSearch');
-        // console.log(response);
+    // call to imbd
+    $.ajax({
 
-        var release = response.Released;
-        var releaseText = "RELEASE: " + release;
+      url: queryURL,
+      method: "GET"
 
-        var title = response.Title;
-        var titleText = title;
+    }).then(function(response) {
+      // $("#movie-view").text(JSON.stringify(response));
+      // console.log('imbdSearch');
+      // console.log(response);
 
-        var description = response.Plot;
-        var descriptionText = "DESCRIPTION: " + description;
+      // search and store desired info
+      var release = response.Released;
+      var releaseText = "RELEASE: " + release;
 
-        var director = response.Director;
-        var directorText = "DIRECTOR: " + director;
+      var title = response.Title;
+      var titleText = title;
 
-        var rating = response.Rated;
-        var ratingText = "RATING: " + rating;
+      var description = response.Plot;
+      var descriptionText = "DESCRIPTION: " + description;
 
-        var runtime = response.Runtime;
-        var runtimeText = "RUNTIME: " + runtime;
+      var director = response.Director;
+      var directorText = "DIRECTOR: " + director;
 
-        var actors = response.Actors;
-        var actorsText = "ACTORS: " + actors;
+      var rating = response.Rated;
+      var ratingText = "RATING: " + rating;
 
-        var awards = response.Awards;
-        var awardsText = "AWARDS: " + awards;
+      var runtime = response.Runtime;
+      var runtimeText = "RUNTIME: " + runtime;
 
-        var image = response.Poster;
+      var actors = response.Actors;
+      var actorsText = "ACTORS: " + actors;
 
-        $("#moviePoster").append("<img id=myImg src='" + image +"'>");
+      var awards = response.Awards;
+      var awardsText = "AWARDS: " + awards;
 
-        $("#movieTitle").append(titleText);
-        $("#director").append(directorText);
-        $("#release").append(releaseText);
-        $("#runtime").append(runtimeText);
-        $("#rating").append(ratingText);
-        $("#actors").append(actorsText);
-        $("#awards").append(awardsText);
-        $("#descriptionMovie").append(descriptionText);
+      var image = response.Poster;
 
-      });
+      // append movie poster
+      $("#moviePoster").append("<img id=myImg src='" + image +"'>");
+
+      // append all new info
+      $("#movieTitle").append(titleText);
+      $("#director").append(directorText);
+      $("#release").append(releaseText);
+      $("#runtime").append(runtimeText);
+      $("#rating").append(ratingText);
+      $("#actors").append(actorsText);
+      $("#awards").append(awardsText);
+      $("#descriptionMovie").append(descriptionText);
+
+    });
       
-    }
+  }
 
-  	function tmbdSearch(title){
+  // function to call for movie existence
+  function tmbdSearch(title){
 
-  		// console.log('called');
-  		// console.log(title);
-  		queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1ebfe01505e78aebefb2f6d3e54a2dd0&query=" + title;
+  	// console.log('called');
+  	// console.log(title);
+  	queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1ebfe01505e78aebefb2f6d3e54a2dd0&query=" + title;
 
-		$.ajax({
-    		url: queryURL,
-   			method: 'GET'
-		}).then(function(response) {
-   			console.log(response);
+    // call to tmbd
+	  $.ajax({
 
-   			if(response.results.length != 0){
+      url: queryURL,
+   		method: 'GET'
 
-   				var key = response.results[0].id;
+	  }).then(function(response) {
+   	  console.log(response);
 
-   				// console.log(key);
+      //  if movie found
+   		if(response.results.length != 0){
 
-          var movieButton = $("<button class='btn btn-default' id='movieButton'>");
-          movieButton.append('We found a movie!');
-          // $("#movieButton").show();
-          $("#find").append(movieButton);
-          $("#iframe").hide();
+        // grab id of trailer
+   		  var key = response.results[0].id;
 
-          imbdSearch(title);
-   				findTrailer(key);
+   		  // console.log(key);
 
-   			}else{
-   				// sorry we couldnt find a movie
-          $("#find").append('Sorry we couldnt find a movie.')
-   			}
+        // create when movie found
+        var movieButton = $("<button class='btn btn-default' id='movieButton'>");
+
+        // append button
+        movieButton.append('We found a movie!');
+        // $("#movieButton").show();
+
+        // append button to screen
+        $("#find").append(movieButton);
+        $("#iframe").hide();
+
+        // call imbd for movie info
+        imbdSearch(title);
+
+        // call tmbd 2nd time for trailer
+ 			  findTrailer(key);
+
+      // if movie doesnt exist 
+		  }else{
+        
+        $("#find").append('Sorry we couldnt find a movie.')
+   		}
    			
-		});
-	}
+	  });
+  }
 
+  // function to find movie trailer
 	function findTrailer(key) {
 
 		var queryURL2 = "https://api.themoviedb.org/3/movie/" + key + "/videos?api_key=1ebfe01505e78aebefb2f6d3e54a2dd0"
 
+    // 2nd call to tmbd
 		$.ajax({
-    		url: queryURL2,
-   			method: 'GET'
+
+    	url: queryURL2,
+   		method: 'GET'
 
 		}).then(function(response) {
-   			// console.log(response);
+   		// console.log(response);
 
-   			var youtubeId = '';
+      // create id holder
+   		var youtubeId = '';
 
-   			for(var i = 0; i < response.results.length; i++){
-   				var name = response.results[i].type;
+      // loop through return results
+   		for(var i = 0; i < response.results.length; i++){
+   			var name = response.results[i].type;
 
-   				if (name == 'Trailer'){
-   					youtubeId = response.results[i].key;
-   				}
+        // if type is trailer
+   			if (name == 'Trailer'){
+
+          // grab key
+   				youtubeId = response.results[i].key;
    			}
+   		}
 
-   			$.ajax({
-    			url: 'https://www.googleapis.com/youtube/v3/videos?part=player&id=' + youtubeId + '&key=AIzaSyAJoilv7hg1Nala1yMWZEHwZxgBYcXtE5Y',
-   				method: 'GET'
+      // call to youtube
+   		$.ajax({
+
+        // use key to key embed trailer from youtube
+    		url: 'https://www.googleapis.com/youtube/v3/videos?part=player&id=' + youtubeId + '&key=AIzaSyAJoilv7hg1Nala1yMWZEHwZxgBYcXtE5Y',
+   			method: 'GET'
 
 			}).then(function(response) {
 
 				console.log(response);
 
+        // if no trailer
         if(response.items.length == 0){
 
-            $("#trailer").hide();
+          // hide div
+          $("#trailer").hide();
 
-          }else{
+        }else{
 
-            $("#trailer").show();
-
-            $("#iframe").show();
+          // else show div
+          $("#trailer").show();
+          $("#iframe").show();
             
-            var link = response.items[0].player.embedHtml;
+          // grab link
+          var link = response.items[0].player.embedHtml;
 
-            link = link.replace(/\/\//g, "https://");
+          // add https
+          link = link.replace(/\/\//g, "https://");
 
-            $("#iframe").append(link);
+          // append link
+          $("#iframe").append(link);
 
-            console.log(link);
+          console.log(link);
 
-            // $("#iframe").show();
+          // $("#iframe").show();
             
 
-          }
+        }
 
+        // when user clicks movie found button
         $(document).on('click', '#movieButton', function() {
           // body...
+
+          // show movie info hide book info
           $("#myBook").hide();
           $("#myMovie").show();
           
