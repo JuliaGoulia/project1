@@ -62,11 +62,11 @@ $(document).ready(function() {
   nextImage();
 
   function displayImage(){
-    $("#img-holder").html("<img src=" + memes[count] + " width='200px' height='200px'>");
+    $("#memes").attr('src', memes[count]);
 
     //insert a random generator for count
     count = Math.floor(Math.random() * memes.length);
-    console.log(memes[count]);
+    // console.log(memes[count]);
     //count++;
     // nextImage();
   }
@@ -74,7 +74,7 @@ $(document).ready(function() {
   function nextImage() {
  
        
-    console.log(count);
+    // console.log(count);
 
     setInterval(displayImage, 6000);
 
@@ -96,11 +96,37 @@ $(document).ready(function() {
 
 		book = book.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 
-		console.log(book);
+		// console.log(book);
 
 		$("#bookSearch").val('');
 		$("#authorSearch").val('');
 
+    $("#myBook").hide();
+    $("#myMovie").hide();
+    $("#bookTitle").show();
+
+    $("#bookPoster").empty();
+
+    $("#myTitle").empty();
+    $("#myPoster").empty();
+
+    $("#find").empty();
+    $("#author").empty();
+    $("#category").empty();
+    $("#publish").empty();
+    $("#pages").empty();
+    $("#description").empty();
+
+    $("#movieTitle").empty();
+    $("#moviePoster").empty();
+    
+    $("#director").empty();
+    $("#release").empty();
+    $("#rating").empty();
+    $("#runtime").empty();
+    $("#actors").empty();
+    $("#awards").empty();
+    $("#descriptionMovie").empty();
 
 		// console.log(book);
 
@@ -121,142 +147,212 @@ $(document).ready(function() {
   			console.log(googleBook);
 
   			// book = tost
+        if(googleBook.totalItems == 0){
+          $("#bookTitle").text("Your search didn't return any results. Check your spelling and try again.")
+          $("#book").show();
+        }else{
 
-  			for(var i = 0; i < googleBook.items.length; i++){
+  			  for(var i = 0; i < googleBook.items.length; i++){
 
 
-  				if(googleBook.items[i].volumeInfo.imageLinks != null){
+  				  if(googleBook.items[i].volumeInfo.imageLinks == null){
 
-  					var image = googleBook.items[i].volumeInfo.imageLinks.thumbnail;
+              var title = googleBook.items[i].volumeInfo.title;
+              var titleText = title;
 
-            var title = googleBook.items[i].volumeInfo.title;
+              var card = $("<div class='card' style='width: 18rem'>");
+
+              card.append($("<img id='0' class='card-img-top bookImage' src='assets/images/noImage.jpg'>"));
+
+              var cardBody = $("<div class='card-body'>");
+
+              var cardText = $("<p class='card-text'>");
+
+              cardText.append(titleText);
+
+              cardBody.append(cardText);
+
+              // console.log(titleText);
+
+              card.append(cardBody);
+
+              $("#bookPoster").append(card);
+
+              $("#0" ).attr('id', i);
+
+              console.log($("#" + i).attr('id'));
+            }else{
+
+              var image = googleBook.items[i].volumeInfo.imageLinks.thumbnail;
+
+              var title = googleBook.items[i].volumeInfo.title;
+              var titleText = title;
+
+              var card = $("<div class='card' style='width: 18rem'>");
+
+              card.append($("<img id='0' class='card-img-top bookImage' src='" + image + "'>"));
+
+              var cardBody = $("<div class='card-body'>");
+
+              var cardText = $("<p class='card-text'>");
+
+              cardText.append(titleText);
+
+              cardBody.append(cardText);
+
+              // console.log(titleText);
+
+              card.append(cardBody);
+
+              $("#bookPoster").append(card);
+
+              $("#0" ).attr('id', i);
+
+              console.log($("#" + i).attr('id'));
+
+            }
+
+            $("#bookTitle").text('We Found Some Books! Click On The One Your Looking For');
+  				  $("#book").show();
+
+  			  }
+
+        }
+
+  			$("img").on('click', function(event){
+  				event.preventDefault();
+
+          $("#radioPoll")[0].reset();
+
+          count++;
+
+          $("#poll").show();  					
+
+  				console.log($(this).attr('id'));
+
+  				var id = $(this).attr('id');
+
+          if(id == 0){
+            id = 9;
+          }else{
+            id = id -1;
+          }
+
+          console.log(id);
+  				var myImg = googleBook.items[id].volumeInfo.imageLinks.thumbnail;
+
+  				console.log(myImg);
+
+  				$("#bookPoster").empty();
+  				$("#bookTitle").hide();
+
+  				// $("#bookInfo").empty();
+  				$("#iframe").empty();
+					$("#gotMovie").hide(); 
+
+          $("#book").hide();
+          $("#myBook").show();
+
+					$("#myPoster").append("<img id=myImg src='" + myImg +"'>");
+
+          if(googleBook.items[id].volumeInfo.title == null){
+            var titleText = "TITLE: Unavailable";
+          }else{
+            var title = googleBook.items[id].volumeInfo.title;
             var titleText = title;
+          }
 
-            var card = $("<div class='card' style='width: 18rem'>");
+          if(googleBook.items[id].volumeInfo.description == null){
+            var descriptionText = "DESCRIPTION: Unavailable";
+          }else{
+            var description = googleBook.items[id].volumeInfo.description;
+            var descriptionText = "DESCRIPTION: " + description;
+          }
 
-            card.append($("<img id='0' class='card-img-top bookImage' src='" + image + "'>"));
+          if(googleBook.items[id].volumeInfo.pageCount == null){
+            var pagesText = "PAGES: Unavailable";
+          }else{
+            var pages = googleBook.items[id].volumeInfo.pageCount;
+            var pagesText = "PAGES: " + pages;
+          }
 
-            var cardBody = $("<div class='card-body'>");
+          if(googleBook.items[id].volumeInfo.categories == null){
+            var categoryText = "CATEGORY: Unavailable";
+          }else{
+            var category = googleBook.items[id].volumeInfo.categories[0];
+            var categoryText = "CATEGORY: " + category;
+          }
+  				
+          if(googleBook.items[id].volumeInfo.authors == null){
+            var authorText = "AUTHOR: Unavailable";
+          }else{
+            var author = googleBook.items[id].volumeInfo.authors[0];
+            var authorText = "AUTHOR: " + author;
+          }
 
-            var cardText = $("<p class='card-text'>");
+  				if(googleBook.items[id].volumeInfo.publishedDate == null){
+            var publishText = "PUBLISHING DATE: Unavailable";
+          }else{
+            var date = googleBook.items[id].volumeInfo.publishedDate;
+            var publishText = "PUBLISHING DATE: " + date;
+          }
 
-            cardText.append(titleText);
+  				
 
-            cardBody.append(cardText);
+          $("#bookInfo").show();
 
-            console.log(titleText);
+          $("#myTitle").append(titleText);
+          $("#author").append(authorText);
+          $("#description").append(descriptionText);
+          $("#category").append(categoryText);
+          $("#publish").append(publishText);
+          $("#pages").append(pagesText);
 
-            card.append(cardBody);
+          // $("#bookInfo").append($("#title"));
 
-  					$("#bookPoster").append(card);
+  				tmbdSearch(title);
 
-  					$("#0" ).attr('id', i);
+          countRef.update({
+            count: count
+          })
 
-  				}
- 				
+          var titleCount = 0;
+          var title_ref;
 
-  				$("#book").show();
+          dataRef.ref().on("value", function(snapshot) {
 
-  			}
-
-  				$("img").on('click', function(event){
-  					event.preventDefault();
-
-            count++;
-
-            $("#poll").show();  					
-
-  					console.log($("img").attr('id'));
-
-  					var id = $(this).attr('id') - 1;
-
-  					var myImg = googleBook.items[id].volumeInfo.imageLinks.thumbnail;
-
-  					console.log(myImg);
-
-  					$("#bookPoster").empty();
-  					$("#bookTitle").hide();
-
-  					// $("#bookInfo").empty();
-  					$("#iframe").empty();
-					  $("#gotMovie").hide(); 
-
-            $("#book").hide();
-            $("#myBook").show();
-
-					  $("#myPoster").append("<img id=myImg src='" + myImg +"'>");
- 
-  					var title = googleBook.items[id].volumeInfo.title;
-  					var titleText = title;
-
-  					var description = googleBook.items[id].volumeInfo.description;
-  					var descriptionText = "DESCRIPTION: " + description;
-
-  					var pages = googleBook.items[id].volumeInfo.pageCount;
-  					var pagesText = "PAGES: " + pages;
-
-  					var category = googleBook.items[id].volumeInfo.categories[0];
-  					var categoryText = "CATEGORY: " + category;
-
-  					var author = googleBook.items[id].volumeInfo.authors[0];
-  					var authorText = "AUTHOR: " + author;
-
-  					var date = googleBook.items[id].volumeInfo.publishedDate;
-  					var publishText = "PUBLISHING DATE: " + date;
-
-            $("#bookInfo").show();
-
-            $("#myTitle").append(titleText);
-            $("#author").append(authorText);
-            $("#description").append(descriptionText);
-            $("#category").append(categoryText);
-            $("#publish").append(publishText);
-            $("#pages").append(pagesText);
-
-            // $("#bookInfo").append($("#title"));
-
-  					tmbdSearch(title);
-
-            countRef.update({
-              count: count
-            })
-
-            var titleCount = 0;
-            var title_ref;
-
-            dataRef.ref().on("value", function(snapshot) {
-
-              if(snapshot.child(title).exists()){
+            if(snapshot.child(title).exists()){
                 
-                console.log(titleCount);
-                title_ref = dataRef.ref(title);
-                console.log(title_ref);
-                titleCount = snapshot.child(title).val().yes;
-                console.log('titleCount', titleCount);
+              // console.log(titleCount);
+              title_ref = dataRef.ref(title);
+              // console.log(title_ref);
+              titleCount = snapshot.child(title).val().yes;
+              // console.log('titleCount', titleCount);
 
-              }else{
+            }else{
 
-                title_ref = title;
-                title_ref = dataRef.ref().child(title);
+              title_ref = title;
+              title_ref = dataRef.ref().child(title);
 
-                title_ref.set({
-                  yes: 0,
-                  no: 0
-                })
+              title_ref.set({
+                yes: 0,
+                no: 0
+              })
 
-              }
+            }
             
 
-  				  });
+  				});
 
-            $(document).on('click', '.yes', function(){
-              titleCount++;
-              title_ref.update({
-                yes: titleCount
-              })
+          $(document).on('click', '.yes', function(){
+            titleCount++;
+            // $("#radioPoll").text("Thanks!");
+            title_ref.update({
+              yes: titleCount
             })
+          })
 
-   				});
+   			});
    			
   			
   		});
@@ -272,8 +368,8 @@ $(document).ready(function() {
         method: "GET"
       }).then(function(response) {
         // $("#movie-view").text(JSON.stringify(response));
-        console.log('imbdSearch');
-        console.log(response);
+        // console.log('imbdSearch');
+        // console.log(response);
 
         var release = response.Released;
         var releaseText = "RELEASE: " + release;
@@ -318,8 +414,8 @@ $(document).ready(function() {
 
   	function tmbdSearch(title){
 
-  		console.log('called');
-  		console.log(title);
+  		// console.log('called');
+  		// console.log(title);
   		queryURL = "https://api.themoviedb.org/3/search/movie?api_key=1ebfe01505e78aebefb2f6d3e54a2dd0&query=" + title;
 
 		$.ajax({
@@ -332,12 +428,12 @@ $(document).ready(function() {
 
    				var key = response.results[0].id;
 
-   				console.log(key);
+   				// console.log(key);
 
           var movieButton = $("<button class='btn btn-default' id='movieButton'>");
           movieButton.append('We found a movie!');
           // $("#movieButton").show();
-          $("#myPoster").append(movieButton);
+          $("#find").append(movieButton);
           $("#iframe").hide();
 
           imbdSearch(title);
@@ -345,7 +441,7 @@ $(document).ready(function() {
 
    			}else{
    				// sorry we couldnt find a movie
-          $("#myPoster").append('Sorry we couldnt find a movie.')
+          $("#find").append('Sorry we couldnt find a movie.')
    			}
    			
 		});
@@ -360,7 +456,7 @@ $(document).ready(function() {
    			method: 'GET'
 
 		}).then(function(response) {
-   			console.log(response);
+   			// console.log(response);
 
    			var youtubeId = '';
 
@@ -380,17 +476,34 @@ $(document).ready(function() {
 
 				console.log(response);
 
-				var link = response.items[0].player.embedHtml;
+        if(response.items.length == 0){
 
-				link = link.replace(/\/\//g, "https://");
+            $("#trailer").hide();
 
-				$("#iframe").append(link);
+          }else{
+
+            $("#trailer").show();
+
+            $("#iframe").show();
+            
+            var link = response.items[0].player.embedHtml;
+
+            link = link.replace(/\/\//g, "https://");
+
+            $("#iframe").append(link);
+
+            console.log(link);
+
+            // $("#iframe").show();
+            
+
+          }
 
         $(document).on('click', '#movieButton', function() {
           // body...
           $("#myBook").hide();
           $("#myMovie").show();
-          $("#iframe").show();
+          
         })
 
 			});

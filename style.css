@@ -31,12 +31,6 @@
 	text-align: center;
 }
 
-#shakes{
-	height: 5vw;
-	width: 5vw;
-	/*margin: 0px;*/
-}
-
 nav{
 	background-color: lightgray;
 
@@ -129,4 +123,37 @@ label{
 	font-size: 25px;
 	text-align: center;
 	margin-top: 5vw;
+}
+
+.glyphicon-thumbs-up{
+	font-size: 1.5vw;
+
+}
+
+.glyphicon-thumbs-down{
+	font-size: 1.5vw;
+}
+
+span{
+	margin-right: 2vw;
+	margin-left: 1vw;
+}
+
+.vote{
+	font-size: 1.5vw;
+}
+
+#img-holder{
+	border: solid 1px lightgray !important;
+	padding: 2vw;
+	overflow: hidden;
+	width: 17.5vw;
+	margin-top: 3vw;
+	margin-left: 1.5vw;
+}
+
+#find{
+	font-size: 1.5vw;
+	/*margin-top: 3vw !important;*/
+	/*margin: 1vw;*/
 }
