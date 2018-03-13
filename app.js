@@ -485,7 +485,7 @@ $(document).ready(function() {
         // $("#movieButton").show();
 
         // append button to screen
-        $("#find").append(movieButton);
+        $("#myPoster").append(movieButton);
         $("#iframe").hide();
 
         // call imbd for movie info
