@@ -1,8 +1,5 @@
 #book{
 	margin-top: 30px;
-	/*margin: auto;
-	text-align: center;
-	width: 100%;*/
 }
 
 #gotMovie{
@@ -28,11 +25,6 @@
 	font-size: 30px;
 	text-align: center;
 }
-
-/*#iframe{
-	margin-top: 30px;
-	text-align: center;
-}*/
 
 nav{
 	background-color: lightgray;
@@ -65,18 +57,11 @@ label{
 }
 .card{
 	float: left;
-	/*border: solid 1px lightgray !important;*/
-	/*margin: 10px;*/
 	height: 240px;
-	/*margin: 2px;*/
-	margin-left: 50px;
 }
 
 #bookPoster{
 	margin-top: 30px;
-	/*margin: auto;
-	width: 100%;
-	text-align: center;*/
 }
 
 #myImg{
@@ -85,10 +70,6 @@ label{
 	width: 180px;
 }
 
-#bookInfo{
-	/*float: left;*/
-	/*margin-left: 5px;*/
-}
 
 #myTitle{
 	font-size: 30px;
@@ -157,30 +138,13 @@ span{
 	text-align: center;
 }
 
-/*#booksFound{
-	width: 100% !important;
-	margin: auto !important;
-	text-align: center !important;
-}*/
 
 #memes{
 	border: solid 3px black !important;
-	/*padding: 2vw;*/
-	/*overflow: hidden;*/
-	/*width: 17.5vw;*/
-	/*width: 200px;
-	height: 200px;*/
-	/*margin-top: 3vw;*/
-	/*margin-left: 1.5vw;*/
-	/*width: 100%;*/
-	/*margin: auto;
-	text-align: center;*/
 }
 
 #find{
 	font-size: 1.5vw;
-	/*margin-top: 3vw !important;
-	/*margin: 1vw;*/
 }
 
 .videoWrapper {
@@ -197,8 +161,9 @@ span{
 	height: 100%;
 }
 
-#picFind{
-	/*margin-left: 5px;*/
+.border{
+	border: solid 1px lightgray;
+
 }
 
 @media only screen and (max-width: 360px){
