@@ -67,12 +67,13 @@ label{
 	float: left;
 	/*border: solid 1px lightgray !important;*/
 	/*margin: 10px;*/
-	height: 16vw;
+	height: 240px;
 	/*margin: 2px;*/
+	margin-left: 50px;
 }
 
 #bookPoster{
-	margin-top: 4vw;
+	margin-top: 30px;
 	/*margin: auto;
 	width: 100%;
 	text-align: center;*/
@@ -156,9 +157,15 @@ span{
 	text-align: center;
 }
 
+/*#booksFound{
+	width: 100% !important;
+	margin: auto !important;
+	text-align: center !important;
+}*/
+
 #memes{
-	/*border: solid 1px lightgray !important;
-	padding: 2vw;*/
+	border: solid 3px black !important;
+	/*padding: 2vw;*/
 	/*overflow: hidden;*/
 	/*width: 17.5vw;*/
 	/*width: 200px;
@@ -192,4 +199,26 @@ span{
 
 #picFind{
 	/*margin-left: 5px;*/
+}
+
+@media only screen and (max-width: 360px){
+	.card{
+		margin-left: 30px;
+	}
+
+	#myPoster{
+		margin-left: 15px;
+	}
+
+	#noMovie{
+		margin-left: 15px;
+	}
+
+	#find{
+		margin-left: 15px;
+	}
+
+	#moviePoster{
+		margin-left: 15px;
+	}
 }
