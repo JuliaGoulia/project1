@@ -203,22 +203,22 @@ span{
 
 @media only screen and (max-width: 360px){
 	.card{
-		margin-left: 75px;
+		margin-left: 95px;
 	}
 
 	#myPoster{
-		margin-left: 55px;
+		margin-left: 75px;
 	}
 
 	#noMovie{
-		margin-left: 55px;
+		margin-left: 75px;
 	}
 
 	#find{
-		margin-left: 55px;
+		margin-left: 75px;
 	}
 
 	#moviePoster{
-		margin-left: 55px;
+		margin-left: 75px;
 	}
 }
