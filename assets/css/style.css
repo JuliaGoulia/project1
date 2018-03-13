@@ -1,27 +1,229 @@
-#topLeft{
-	background-color: red;
-	height: 50vh;
-}
-#topRight{
-	background-color: blue;
-	height: 50vh;
-	color: white;
-	text-shadow: 2px 2px red;
-	font-size: 25px;
-}
-/*#bottomLeft{
-	background-color: black;
-	height: 50vh;*/
-}
-#row2{
-	background-color: pink;
-	height: 50vh;
-}
-#radioPoll{
-	color: white;
-	text-shadow: 2px 2px black;
+#book{
+	margin-top: 30px;
+	/*margin: auto;
+	text-align: center;
+	width: 100%;*/
 }
 
-input[type="radio"]{
-  margin: 0 10px 0 30px;
+#gotMovie{
+	margin-top: 30px;
+}
+
+#bookInfo{
+	margin-top: 30px;
+}
+
+.bookImage{
+	height: 180px;
+	width: 130px;
+	/*margin: 15px;*/
+}
+
+#bookTitle{
+	font-size: 30px;
+
+}
+
+#movieTitle{
+	font-size: 30px;
+	text-align: center;
+}
+
+/*#iframe{
+	margin-top: 30px;
+	text-align: center;
+}*/
+
+nav{
+	background-color: lightgray;
+
+	overflow: hidden;
+	height: 6vw !important;
+}
+
+#searchBox{
+	border: solid 1px lightgray !important;
+	padding: 10px !important;
+	margin-top: 3vw !important;
+}
+
+#poll{
+	/*border: solid 1px lightgray !important;*/
+	padding: 10px !important;
+	margin-top: 3vw !important;
+	width: 100% !important;
+	text-align: center;
+}
+
+#search{
+	margin-top: 10px !important;
+}
+
+label{
+	margin-top: 5px !important;
+
+}
+.card{
+	float: left;
+	/*border: solid 1px lightgray !important;*/
+	/*margin: 10px;*/
+	height: 240px;
+	/*margin: 2px;*/
+	margin-left: 50px;
+}
+
+#bookPoster{
+	margin-top: 30px;
+	/*margin: auto;
+	width: 100%;
+	text-align: center;*/
+}
+
+#myImg{
+	float: left;
+	height: 220px;
+	width: 180px;
+}
+
+#bookInfo{
+	/*float: left;*/
+	/*margin-left: 5px;*/
+}
+
+#myTitle{
+	font-size: 30px;
+	text-align: center;
+}
+
+#myBook{
+	margin-top: 2vw !important;
+	/*text-align: center;*/
+}
+
+#myMovie{
+	margin-top: 2vw !important;
+	/*text-align: center;*/
+}
+
+#myPoster{
+	margin-top: 2vw !important;
+	/*text-align: center;*/
+}
+
+#moviePoster{
+	margin-top: 2vw !important;
+	/*text-align: center;*/
+}
+
+#movieInfo{
+	margin-top: 30px;
+	/*text-align: center;*/
+}
+
+#movieButton{
+	margin: 10px !important;
+	/*background-color: lightblue !important;*/
+	padding-right: 20px !important;
+	padding-left: 20px !important;
+}
+
+#trailer{
+	font-size: 25px;
+	text-align: center;
+	margin-top: 5vw;
+}
+
+.glyphicon-thumbs-up{
+	font-size: 20px;
+
+}
+
+.glyphicon-thumbs-down{
+	font-size: 20px;
+}
+
+span{
+	margin-right: 2vw;
+	margin-left: 1vw;
+}
+
+.vote{
+	font-size: 18px;
+}
+
+#img-holder{
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+/*#booksFound{
+	width: 100% !important;
+	margin: auto !important;
+	text-align: center !important;
+}*/
+
+#memes{
+	border: solid 3px black !important;
+	/*padding: 2vw;*/
+	/*overflow: hidden;*/
+	/*width: 17.5vw;*/
+	/*width: 200px;
+	height: 200px;*/
+	/*margin-top: 3vw;*/
+	/*margin-left: 1.5vw;*/
+	/*width: 100%;*/
+	/*margin: auto;
+	text-align: center;*/
+}
+
+#find{
+	font-size: 1.5vw;
+	/*margin-top: 3vw !important;
+	/*margin: 1vw;*/
+}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%;  /*16:9*/ 
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#picFind{
+	/*margin-left: 5px;*/
+}
+
+@media only screen and (max-width: 360px){
+	.card{
+		margin-left: 60px;
+	}
+
+	#myPoster{
+		margin-left: 45px;
+	}
+
+	#noMovie{
+		margin-left: 45px;
+	}
+
+	#find{
+		margin-left: 5px;
+	}
+
+	#moviePoster{
+		margin-left: 45px;
+	}
+
+	#movieButton{
+		margin-left: 5px !important;
+		background-color: blue !important;
+	}
 }

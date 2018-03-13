@@ -1,54 +1,110 @@
 <!DOCTYPE html>
 
-<html lang="en-us">
+<html>
+<head>
+  <title>scratch</title>
+  
+  <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 
-  <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> 
 
-    <meta charset="UTF-8">
-    <script src="assets/javascript/app.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <title>Book Break-in</title>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <!-- LINK TO FIREBASE GOES HERE -->
-    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+  <div class="container">
+    
+    <nav class="navbar">
+        <a class="navbar-brand" href="#">
+        </a>
+    </nav>
 
-  </head>
-
-  <body>
-     <div class="conatiner">
-
-        <div id="row1">
-            <div class="col-lg-6" id="topLeft">
-                <div class="form-group">
+    <div id="row">
+          <div class="col-md-4">
+              <div class="form-group" id="searchBox">
                   <label for="search">Search for a book</label>
                   <input type="text" class="form-control" id="bookSearch">
+
+                  <label for="search">Search author</label>
+                  <input type="text" class="form-control" id="authorSearch">
+
                   <button type="button" class="btn btn-default" id="search">Search</button>
+              </div>
+
+              <div class="col-md-12">
+                <div id="img-holder">
+                  <img id="memes" class="" height="200px" width="200px" src="assets/images/charlotte.jpg"">
                 </div>
-
             </div>
-            <div class="col-lg-6" id="topRight"> Would you read this book?
-              <form id="radioPoll">
-                <input type="radio" name="poll" value="yes" class="yes" onclick="yesFunction()"> Yes
-                <input type="radio" name="poll" value="no" class="no" onclick="noFunction()"> No
-                <input type="radio" name="poll" value="maybe" class="maybe" onclick="maybeFunction()"> Maybe
-              </form>
-       
-            </div>
+          </div>
+      <div id="book" class="col-md-8" align="center">
+        <div id="bookTitle"></div>
+        
+        <!-- <div id="booksFound"> -->
+          <div id="bookPoster"></div>
+        <!-- </div> -->
+        
+        
+      </div>
+      <div id="myBook" class="col-md-8">
+        <div id="myTitle"></div>
+        <div id="picFind" class="col-md-4">
+          <div id="myPoster"></div>
+          <div id="find"></div>
         </div>
-
-        <div id="row2">
+        <div id="bookInfo" class="col-md-8">
             
+          <div class="col-md-12">
+            <div id="author"></div>
+            <div id="category"></div>
+            <div id="publish"></div>
+            <div id="pages"></div>
+            <div id="description"></div>
+            <div id="poll">
+                    <form id="radioPoll">
+                      <label>Would you read this book?</label><br>
+                        <input type="radio" name="poll" value="yes" class="yes" > Yes
+                        <input type="radio" name="poll" value="no" class="no"> No
+                        <input type="radio" name="poll" value="maybe" class="maybe"> Maybe  
+                    </form>
+                    <div class="vote"><span class="glyphicon glyphicon-thumbs-up"></span>0<span class="glyphicon glyphicon-thumbs-down"></span>0</div>
                 
+                  </div>
+                  </div>
         </div>
-
-
-
-
-     </div>
-
-  </body>
-
+      </div>
+      <div id="myMovie" class="col-md-8">
+        <div id="movieTitle"></div>
+        <div id="moviePoster" class="col-md-4"></div>
+        
+        <div id="movieInfo" class="col-md-8">
+          <div class="col-md-12">
+            <div id="director"></div>
+            <div id="release"></div>
+            <div id="rating"></div>
+            <div id="runtime"></div>
+            <div id="actors"></div>
+            <div id="awards"></div>
+            <div id="descriptionMovie"></div>
+          </div>
+      
+          <div id="trailer">
+            Check Out The Trailer
+            
+            <div id="iframe" class="videoWrapper"></div>
+            
+            
+          </div>
+          
+        </div>
+      </div>
+      
+      
+      </div>
+  </div>
+</body>
 </html>
