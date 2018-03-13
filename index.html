@@ -35,9 +35,9 @@
                 	<button type="button" class="btn btn-default" id="search">Search</button>
             	</div>
 
-            	<div class="col-md-4">
+            	<div class="col-md-12">
             		<div id="img-holder">
-            			<img id="memes" class="img img-responsive" width='200px' height='200px' src="assets/images/charlotte.jpg"">
+            			<img id="memes" class="" height="200px" width="200px" src="assets/images/charlotte.jpg"">
             		</div>
         		</div>
 
@@ -50,29 +50,32 @@
 
 			<div id="myBook" class="col-md-8">
 				<div id="myTitle"></div>
-				<div class="col-md-4">
+				<div id="picFind" class="col-md-4">
 					<div id="myPoster"></div>
 					<div id="find"></div>
 				</div>
 
 				<div id="bookInfo" class="col-md-8">
 						
-					<div id="author"></div>
-					<div id="category"></div>
-					<div id="publish"></div>
-					<div id="pages"></div>
-					<div id="description"></div>
+					<div class="col-md-12">
+						<div id="author"></div>
+						<div id="category"></div>
+						<div id="publish"></div>
+						<div id="pages"></div>
+						<div id="description"></div>
 
-					<div id="poll">
-            			<form id="radioPoll">
-            				<label>Would you read this book?</label><br>
-               				<input type="radio" name="poll" value="yes" class="yes" > Yes
-               				<input type="radio" name="poll" value="no" class="no"> No
-               				<input type="radio" name="poll" value="maybe" class="maybe"> Maybe	
-             			</form>
-             			<div class="vote"><span class="glyphicon glyphicon-thumbs-up"></span>0<span class="glyphicon glyphicon-thumbs-down"></span>0</div>
+						<div id="poll">
+            				<form id="radioPoll">
+            					<label>Would you read this book?</label><br>
+               					<input type="radio" name="poll" value="yes" class="yes" > Yes
+               					<input type="radio" name="poll" value="no" class="no"> No
+               					<input type="radio" name="poll" value="maybe" class="maybe"> Maybe	
+             				</form>
+             				<div class="vote"><span class="glyphicon glyphicon-thumbs-up"></span>0<span class="glyphicon glyphicon-thumbs-down"></span>0</div>
             		
-            		</div>
+            			</div>
+
+            	    </div>
 				</div>
 			</div>
 
@@ -81,18 +84,22 @@
 				<div id="moviePoster" class="col-md-4"></div>
 				
 				<div id="movieInfo" class="col-md-8">
-						
-					<div id="director"></div>
-					<div id="release"></div>
-					<div id="rating"></div>
-					<div id="runtime"></div>
-					<div id="actors"></div>
-					<div id="awards"></div>
-					<div id="descriptionMovie"></div>
-
+					<div class="col-md-12">
+						<div id="director"></div>
+						<div id="release"></div>
+						<div id="rating"></div>
+						<div id="runtime"></div>
+						<div id="actors"></div>
+						<div id="awards"></div>
+						<div id="descriptionMovie"></div>
+					</div>
+			
 					<div id="trailer">
 						Check Out The Trailer
-						<div id="iframe" class="col-md-8"></div>
+						
+						<div id="iframe" class="videoWrapper"></div>
+						
+						
 					</div>
 					
 

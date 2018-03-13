@@ -1,5 +1,8 @@
 #book{
 	margin-top: 30px;
+	/*margin: auto;
+	text-align: center;
+	width: 100%;*/
 }
 
 #gotMovie{
@@ -26,10 +29,10 @@
 	text-align: center;
 }
 
-#iframe{
+/*#iframe{
 	margin-top: 30px;
 	text-align: center;
-}
+}*/
 
 nav{
 	background-color: lightgray;
@@ -70,16 +73,20 @@ label{
 
 #bookPoster{
 	margin-top: 4vw;
+	/*margin: auto;
+	width: 100%;
+	text-align: center;*/
 }
 
 #myImg{
 	float: left;
-	height: 16vw;
-	width: 12vw;
+	height: 220px;
+	width: 180px;
 }
 
 #bookInfo{
 	/*float: left;*/
+	/*margin-left: 5px;*/
 }
 
 #myTitle{
@@ -126,12 +133,12 @@ label{
 }
 
 .glyphicon-thumbs-up{
-	font-size: 1.5vw;
+	font-size: 20px;
 
 }
 
 .glyphicon-thumbs-down{
-	font-size: 1.5vw;
+	font-size: 20px;
 }
 
 span{
@@ -140,20 +147,49 @@ span{
 }
 
 .vote{
-	font-size: 1.5vw;
+	font-size: 18px;
 }
 
 #img-holder{
-	border: solid 1px lightgray !important;
-	padding: 2vw;
-	overflow: hidden;
-	width: 17.5vw;
-	margin-top: 3vw;
-	margin-left: 1.5vw;
+	width: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+#memes{
+	/*border: solid 1px lightgray !important;
+	padding: 2vw;*/
+	/*overflow: hidden;*/
+	/*width: 17.5vw;*/
+	/*width: 200px;
+	height: 200px;*/
+	/*margin-top: 3vw;*/
+	/*margin-left: 1.5vw;*/
+	/*width: 100%;*/
+	/*margin: auto;
+	text-align: center;*/
 }
 
 #find{
 	font-size: 1.5vw;
-	/*margin-top: 3vw !important;*/
+	/*margin-top: 3vw !important;
 	/*margin: 1vw;*/
+}
+
+.videoWrapper {
+	position: relative;
+	padding-bottom: 56.25%;  /*16:9*/ 
+	padding-top: 25px;
+	height: 0;
+}
+.videoWrapper iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#picFind{
+	/*margin-left: 5px;*/
 }

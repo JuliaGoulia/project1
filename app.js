@@ -394,9 +394,9 @@ $(document).ready(function() {
   }
 
   // function for movie info search
-  function imbdSearch(title){
+  function ombdSearch(title){
 
-    var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=trilogy";
+    var queryURL = "https://www.omdbapi.com/?t=" + title + "&y=&plot=short&apikey=e062280";
 
     // call to imbd
     $.ajax({
@@ -489,7 +489,7 @@ $(document).ready(function() {
         $("#iframe").hide();
 
         // call imbd for movie info
-        imbdSearch(title);
+        ombdSearch(title);
 
         // call tmbd 2nd time for trailer
  			  findTrailer(key);
@@ -497,7 +497,7 @@ $(document).ready(function() {
       // if movie doesnt exist 
 		  }else{
         
-        $("#find").append('Sorry we couldnt find a movie.')
+        $("#find").append("<img src ='assets/images/noVideo.jpg' height = 40px width = 40px>")
    		}
    			
 	  });
@@ -536,7 +536,7 @@ $(document).ready(function() {
    		$.ajax({
 
         // use key to key embed trailer from youtube
-    		url: 'https://www.googleapis.com/youtube/v3/videos?part=player&id=' + youtubeId + '&key=AIzaSyAJoilv7hg1Nala1yMWZEHwZxgBYcXtE5Y',
+    		url: 'https://www.googleapis.com/youtube/v3/videos?part=player&id=' + youtubeId + '&key=AIzaSyD3t9FZQ_rFOQdwV_b3PVvH6FEWSNJjRck',
    			method: 'GET'
 
 			}).then(function(response) {
