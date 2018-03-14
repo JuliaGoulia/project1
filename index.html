@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>scratch</title>
+	<title>Book Search</title>
 	
 	<!-- JQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -35,7 +35,7 @@
                 	<button type="button" class="btn btn-default" id="search">Search</button>
             	</div>
 
-            	<div class="col-md-12">
+            	<div id="memeHolder" class="col-md-12">
             		<div id="img-holder">
             			<img id="memes" class="" height="200px" width="200px" src="assets/images/charlotte.jpg"">
             		</div>
@@ -80,7 +80,7 @@
                					<input type="radio" name="poll" value="no" class="no"> No
                					<input type="radio" name="poll" value="maybe" class="maybe"> Maybe	
              				</form>
-             				<div class="vote"><span class="glyphicon glyphicon-thumbs-up"></span>0<span class="glyphicon glyphicon-thumbs-down"></span>0</div>
+             				<div class="vote"><span class="glyphicon glyphicon-thumbs-up"><span id="yes">0</span></span><span class="glyphicon glyphicon-thumbs-down"><span id="no">0</span></span><span class="glyphicon glyphicon-question-sign"><span id="maybe">0</span></span></div>
             		
             			</div>
 

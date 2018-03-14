@@ -332,7 +332,9 @@ $(document).ready(function() {
         })
 
         // create variable for poll
-        var titleCount = 0;
+        var yesCount = 0;
+        var noCount = 0;
+        var maybeCount = 0;
 
         // create a refrence for title
         var title_ref;
@@ -350,10 +352,15 @@ $(document).ready(function() {
             // console.log(title_ref);
 
             // update poll value
-            titleCount = snapshot.child(title).val().yes;
+            yesCount = snapshot.child(title).val().yes;
+            noCount = snapshot.child(title).val().no;
+            maybeCount = snapshot.child(title).val().maybe;
 
-            // console.log('titleCount', titleCount);
+            $("#yes").text(yesCount);
+            $("#no").text(noCount);
+            $("#maybe").text(maybeCount);
 
+            
           // else book not in database
           }else{
 
@@ -366,7 +373,8 @@ $(document).ready(function() {
             // set child 
             title_ref.set({
               yes: 0,
-              no: 0
+              no: 0,
+              maybe: 0
             })
           }
             
@@ -376,15 +384,44 @@ $(document).ready(function() {
         // when user clicks yes to poll
         $(document).on('click', '.yes', function(){
 
+          $("input:radio").attr('checked', false);
+
           // increment titleCount
-          titleCount++;
-          // $("#radioPoll").text("Thanks!");
+          yesCount++;
 
           // update child yes value
           title_ref.update({
-            yes: titleCount
+            yes: yesCount
           })
         })
+
+        // when user clicks no to poll
+        $(document).on('click', '.no', function(){
+
+          $("input:radio").attr('checked', false);
+
+          // increment titleCount
+          noCount++;
+
+          // update child yes value
+          title_ref.update({
+            no: noCount
+          })
+        })
+
+        $(document).on('click', '.maybe', function(){
+
+          $("input:radio").attr('checked', false);
+
+          // increment titleCount
+          maybeCount++;
+
+          // update child yes value
+          title_ref.update({
+            maybe: maybeCount
+          })
+        })
+
 
    		});
    			

@@ -114,18 +114,13 @@ label{
 	margin-top: 5vw;
 }
 
-.glyphicon-thumbs-up{
-	font-size: 20px;
-
-}
-
-.glyphicon-thumbs-down{
-	font-size: 20px;
+#memeHolder{
+	margin-top: 80px;
 }
 
 span{
-	margin-right: 2vw;
-	margin-left: 1vw;
+	margin-right: 5px;
+	margin-left: 5px;
 }
 
 .vote{
@@ -189,6 +184,6 @@ span{
 
 	#movieButton{
 		margin-left: 5px !important;
-		background-color: blue !important;
+		/*background-color: blue !important;*/
 	}
 }
