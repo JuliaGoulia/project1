@@ -1,5 +1,30 @@
+#header {
+	background-image: url("assets/images/zzzheader.png");
+	/*width: 95%;*/
+	height: 100px;
+	/*margin-top: 5px;*/
+	/*margin-left: 35px;*/
+	/*background-repeat:no-repeat;*/
+	/*background-size:100%;*/
+	width: 100%;
+	/*background-position:center;*/
+}
+
+#links {
+	background: linear-gradient(to bottom, #ffc34d, yellow);
+	width: 100%;
+	height: 30px;
+	padding-top: 5px;
+	font-size: 15px;
+	overflow: auto;
+	font-family: 'Julius Sans One', sans-serif;
+	padding-right: 5px;
+}
+
+
 #book{
 	margin-top: 30px;
+	/*border-bottom: 20px #993333 solid;*/
 }
 
 #gotMovie{
@@ -17,26 +42,36 @@
 }
 
 #bookTitle{
-	font-size: 30px;
-
+	font-family: 'Marcellus SC', serif;
+	font-size: 21px;
+	background-color:  white;
+	color: black;
+	/*width: px;*/
+	margin-left: -15px;
+	margin-right: -15px;
+	margin-top: 18px;
+	border-right: 30vw  #993333 solid;
+	border-left: 5vw  #993333 solid;
+	border-top: -5px;
+	padding: 5px;
+	text-align: left;
 }
 
 #movieTitle{
-	font-size: 30px;
-	text-align: center;
-}
-
-nav{
-	background-color: lightgray;
-
-	overflow: hidden;
-	height: 6vw !important;
+	/*margin-top: 1vw;*/
+	font-family: 'Cormorant Garamond', serif;
+	font-size: 25px;
+	font-weight: bold;
+	border-bottom: 1px solid black;
 }
 
 #searchBox{
 	border: solid 1px lightgray !important;
 	padding: 10px !important;
 	margin-top: 3vw !important;
+	/*background-color: white;*/
+	font-family: 'Marcellus SC', serif;
+	font-size: 19px;
 }
 
 #poll{
@@ -47,8 +82,41 @@ nav{
 	text-align: center;
 }
 
+#poll{
+	/*border: solid 1px lightgray !important;*/
+	padding: 10px !important;
+	margin-top: 1vw !important;
+	width: 100% !important;
+	text-align: center;
+	margin-bottom: 10px;
+	color:black;
+	font-family: 'Amatic SC', cursive;
+	font-size: 30px;
+}
+
+#poll:hover {
+	transform: scale(1.2);
+}
+
+.vote {
+	color: black;
+	font-size: 18px;
+}
+
 #search{
 	margin-top: 10px !important;
+	/*color: #993333;*/
+}
+
+#search:hover {
+	margin-top: 10px !important;
+	background-color: #993333;
+	color: white;
+	opacity: .90;
+}
+
+input[type=text]:focus {
+    border: 2px solid #555;
 }
 
 label{
@@ -70,10 +138,24 @@ label{
 	width: 180px;
 }
 
+.navbar{
+	background-color: lightgrey;
+	height: 200px;
+}
 
 #myTitle{
 	font-size: 30px;
-	text-align: center;
+	font-weight: bold;
+	font-family: 'Cormorant Garamond', serif;
+	margin-top: 10px;
+	
+	border-bottom: 1px solid black;
+}
+
+#author, #category, #publish, #pages, #description {
+
+	font-family: 'Jaldi', sans-serif;
+	margin-left: -30px;
 }
 
 #myBook{
@@ -99,6 +181,17 @@ label{
 #movieInfo{
 	margin-top: 30px;
 	/*text-align: center;*/
+	padding-right: 90px;
+}
+
+#descriptionMovie {
+	font-family: 'Jaldi', sans-serif;
+	
+}
+
+#director, #release, #rating, #runtime, #actors, #awards {
+
+	font-family: 'Jaldi', sans-serif;
 }
 
 #movieButton{
@@ -106,6 +199,17 @@ label{
 	/*background-color: lightblue !important;*/
 	padding-right: 20px !important;
 	padding-left: 20px !important;
+	background-color:  #ffd11a;
+}
+
+#movieButton:hover {
+	background-color:  gold;
+	margin: 10px !important;
+	/*background-color: lightblue !important;*/
+	padding-right: 20px !important;
+	padding-left: 20px !important;
+	border: 2px solid orange;
+	
 }
 
 #trailer{
@@ -118,13 +222,19 @@ label{
 	margin-top: 80px;
 }
 
-span{
+/*span{
+	margin-right: 5px;
+	margin-left: 5px;
+}*/
+
+#yes, #no, #maybe{
 	margin-right: 5px;
 	margin-left: 5px;
 }
 
-.vote{
-	font-size: 18px;
+.glyphicon{
+	margin-right: 5px;
+	margin-left: 5px;
 }
 
 #img-holder{
@@ -167,6 +277,15 @@ span{
 	}
 
 	#myPoster{
+		margin-left: 45px;
+	}
+
+	#bookInfo{
+		margin-left: 45px;
+		/*background-color: blue !important;*/
+	}
+
+	#movieInfo{
 		margin-left: 45px;
 	}
 

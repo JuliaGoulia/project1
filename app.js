@@ -533,8 +533,12 @@ $(document).ready(function() {
       var release = response.Released;
       var releaseText = "RELEASE: " + release;
 
-      var title = response.Title;
-      var titleText = title;
+      if(response.Title == null){
+        var titleText = 'TITLE UNAVAILABLE'
+      }else{
+        var title = response.Title;
+        var titleText = title;
+      }
 
       var description = response.Plot;
       var descriptionText = "DESCRIPTION: " + description;
@@ -554,7 +558,11 @@ $(document).ready(function() {
       var awards = response.Awards;
       var awardsText = "AWARDS: " + awards;
 
-      var image = response.Poster;
+      if(response.Poster == null){
+        var image = 'assets/images/noImage.jpg';
+      }else{
+        var image = response.Poster;
+      }
 
       // append movie poster
       $("#moviePoster").append("<img id=myImg src='" + image +"'>");
