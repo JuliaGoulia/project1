@@ -146,7 +146,7 @@ $(document).ready(function() {
     	method: "GET"
 
   	}).then(function(googleBook) {
-  		console.log(googleBook);
+  		// console.log(googleBook);
 
       runs++;
 
@@ -221,7 +221,7 @@ $(document).ready(function() {
             // update each card with seperate id
             $("#0" ).attr('id', i);
 
-            console.log($("#" + i).attr('id'));
+            // console.log($("#" + i).attr('id'));
 
           }
 
@@ -331,7 +331,7 @@ $(document).ready(function() {
         // show poll
         $("#poll").show();  					
 
-  			console.log($(this).attr('id'));
+  			// console.log($(this).attr('id'));
 
         // find id
   			var id = $(this).attr('id');
@@ -343,12 +343,12 @@ $(document).ready(function() {
           id = id -1;
         }
 
-        console.log(id);
+        // console.log(id);
 
         // select image
         var myImg = googleBook.items[id].volumeInfo.imageLinks.thumbnail;
 
-  			console.log(myImg);
+  			// console.log(myImg);
 
         // show selected image and search info
   			$("#bookPoster").empty();
@@ -609,7 +609,7 @@ $(document).ready(function() {
    		method: 'GET'
 
 	  }).then(function(response) {
-   	  console.log(response);
+   	  // console.log(response);
 
       //  if movie found
    		if(response.results.length != 0){
@@ -683,7 +683,7 @@ $(document).ready(function() {
 
 			}).then(function(response) {
 
-				console.log(response);
+				// console.log(response);
 
         // if no trailer
         if(response.items.length == 0){
@@ -706,7 +706,7 @@ $(document).ready(function() {
           // append link
           $("#iframe").append(link);
 
-          console.log(link);
+          // console.log(link);
 
           // $("#iframe").show();
             
