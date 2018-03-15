@@ -1,14 +1,3 @@
-#header {
-	background-image: url("assets/images/zzzheader.png");
-	/*width: 95%;*/
-	height: 100px;
-	/*margin-top: 5px;*/
-	/*margin-left: 35px;*/
-	/*background-repeat:no-repeat;*/
-	/*background-size:100%;*/
-	width: 100%;
-	/*background-position:center;*/
-}
 
 #links {
 	background: linear-gradient(to bottom, #ffc34d, yellow);
@@ -181,7 +170,7 @@ label{
 #movieInfo{
 	margin-top: 30px;
 	/*text-align: center;*/
-	padding-right: 90px;
+	/*padding-right: 90px;*/
 }
 
 #descriptionMovie {
@@ -286,7 +275,7 @@ label{
 	}
 
 	#movieInfo{
-		margin-left: 55px;
+		margin-left: 35px;
 	}
 
 	#noMovie{
@@ -304,5 +293,9 @@ label{
 	#movieButton{
 		margin-left: 5px !important;
 		/*background-color: blue !important;*/
+	}
+
+	#poll{
+		margin-left: -30px;
 	}
 }
