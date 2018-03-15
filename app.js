@@ -6,7 +6,7 @@ $(document).ready(function() {
     
 	// for tmdb
 	$("#gotMovie").hide();
-	$("#book").hide();
+	// $("#book").hide();
 	$("#yourBook").hide();
   $("#myBook").hide();
   $("#movieButton").hide();
@@ -72,6 +72,9 @@ $(document).ready(function() {
   // set url to empty string
 	var yotubeURL = '';
 
+  // fill random search
+  bookSearch('','dr.seuss')
+
   // when user clicks search for book
 	$(document).on('click','#search', function(event){
 
@@ -122,9 +125,13 @@ $(document).ready(function() {
 
     // call bookSearch with book and author
 		bookSearch(book, author);
+
+    $("#bookTitle").text('We Found Some Books! Click On The One Your Looking For.');
 		
 	})
 	
+  var runs = 0;
+  
   // function to search for book by title and author
 	function bookSearch(book, author){
 
@@ -140,6 +147,8 @@ $(document).ready(function() {
 
   	}).then(function(googleBook) {
   		console.log(googleBook);
+
+      runs++;
 
   		// spell check
       if(googleBook.totalItems == 0){
@@ -216,9 +225,14 @@ $(document).ready(function() {
 
           }
 
-          // create text and show results
-          $("#bookTitle").text('We Found Some Books! Click On The One Your Looking For');
-  				$("#book").show();
+          // show results
+          if(runs > 1){
+            $("#bookTitle").text('We Found Some Books! Click On The One Your Looking For.');
+            $("#book").show();
+          }else{
+            $("#bookTitle").text('Check out this random search!');
+          }
+  				
 
   			}
 
