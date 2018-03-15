@@ -165,6 +165,8 @@ label{
 #moviePoster{
 	margin-top: 2vw !important;
 	/*text-align: center;*/
+	/*margin-top: 0px;*/
+	/*margin-bottom: 30px;*/
 }
 
 #movieInfo{
@@ -270,12 +272,15 @@ label{
 	}
 
 	#bookInfo{
-		margin-left: 55px;
+		margin-left: 60px;
 		/*background-color: blue !important;*/
 	}
 
 	#movieInfo{
-		margin-left: 35px;
+
+		margin-top: 30px;
+		margin-left: 25px;
+		/*background-color: blue;*/
 	}
 
 	#noMovie{
